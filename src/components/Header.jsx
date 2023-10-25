@@ -2,7 +2,7 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 
 function Header() {
   return (
-    <header className="p-4">
+    <header className="mb-8 p-4">
       <nav className="flex gap-x-6 rounded-xl bg-slate-700 px-3 py-4">
         <div className="flex flex-auto items-center justify-between">
           <div>
