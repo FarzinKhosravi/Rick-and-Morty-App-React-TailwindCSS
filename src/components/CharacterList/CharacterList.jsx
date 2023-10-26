@@ -1,6 +1,6 @@
 import Character from "./Character";
 import CharacterDetail from "./../CharacterDetail";
-import EpisodesList from "./../EpisodesList";
+import EpisodesList from "../EpisodesList/EpisodesList";
 
 const characters = [
   {

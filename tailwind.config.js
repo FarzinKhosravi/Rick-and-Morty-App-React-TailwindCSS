@@ -6,6 +6,10 @@ export default {
       margin: {
         0.5: "2px",
       },
+
+      screens: {
+        xs: "430px",
+      },
     },
   },
   // eslint-disable-next-line no-undef

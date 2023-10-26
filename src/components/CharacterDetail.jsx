@@ -1,6 +1,6 @@
 function CharacterDetail() {
   return (
-    <div>
+    <div className="mb-8">
       <div className="hidden">
         <img
           className="block h-14 w-14 rounded-2xl"
