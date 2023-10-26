@@ -35,7 +35,9 @@ function EpisodesList() {
         </div>
       </div>
       <div>
-        <Episode />
+        {episodes.map((episode) => {
+          return <Episode key={episode.id} episode={episode} />;
+        })}
       </div>
     </div>
   );

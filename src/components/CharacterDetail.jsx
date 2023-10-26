@@ -1,4 +1,4 @@
-function CharacterDetail() {
+function CharacterDetail({ character }) {
   return (
     <div className="mb-8">
       <div className="hidden">
@@ -13,13 +13,13 @@ function CharacterDetail() {
           <div className="mb-1">
             <span>👨🏼</span>
             <span className="ml-1 text-sm font-medium text-slate-300">
-              Rick Sanchez
+              {character.name}
             </span>
           </div>
           <div>
             <span className="inline-block h-3 w-3 rounded-full bg-green-600"></span>
             <span className="ml-2 text-sm font-normal text-slate-300">
-              Alive - Human
+              {`${character.status} - ${character.species}`}
             </span>
           </div>
         </div>
@@ -31,7 +31,7 @@ function CharacterDetail() {
           </div>
           <div className="mb-5">
             <span className="block text-sm font-medium text-slate-300">
-              Citadel of Ricks
+              {character.location.name}
             </span>
           </div>
           <div>

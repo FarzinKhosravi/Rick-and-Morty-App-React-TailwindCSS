@@ -1,6 +1,7 @@
 import Character from "./Character";
 import CharacterDetail from "./../CharacterDetail";
 import EpisodesList from "../EpisodesList/EpisodesList";
+import { useState } from "react";
 
 const characters = [
   {
@@ -42,19 +43,39 @@ const characters = [
 ];
 
 function CharacterList() {
+  const [characterId, setCharacterId] = useState(null);
+
+  const showMenuHandler = (id) => {
+    console.log("clicked !!", id);
+
+    setCharacterId(characterId === id ? null : id);
+  };
+
   return (
     <div>
       <h2 className="mb-4 text-xl font-semibold text-slate-300">
         List of Characters :
       </h2>
       <div>
-        <div>
-          <Character />
-          <div className="bg-slate-800 px-3 py-4">
-            <CharacterDetail />
-            <EpisodesList />
-          </div>
-        </div>
+        {characters.map((character) => {
+          return (
+            <div className="mb-4 last:mb-0" key={character.id}>
+              <Character
+                showMenuHandler={showMenuHandler}
+                character={character}
+                characterId={characterId}
+              />
+              <div
+                className={`rounded-b-xl bg-slate-800 px-3 py-4 ${
+                  character.id === characterId ? "block" : "hidden"
+                }`}
+              >
+                <CharacterDetail character={character} />
+                <EpisodesList />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
