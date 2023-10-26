@@ -8,8 +8,8 @@ function CharacterDetail() {
           alt="rick-img"
         />
       </div>
-      <div className="flex">
-        <div className="flex flex-auto flex-col">
+      <div className="flex flex-col">
+        <div className="mb-4 flex flex-col">
           <div className="mb-1">
             <span>👨🏼</span>
             <span className="ml-1 text-sm font-medium text-slate-300">
@@ -23,19 +23,19 @@ function CharacterDetail() {
             </span>
           </div>
         </div>
-        <div className="ml-4 mt-0.5 flex flex-auto flex-col">
+        <div className="flex flex-col">
           <div className="mb-1">
             <span className="block text-sm text-slate-500">
               Last known location:
             </span>
           </div>
-          <div className="mb-4">
+          <div className="mb-5">
             <span className="block text-sm font-medium text-slate-300">
-              Earth
+              Citadel of Ricks
             </span>
           </div>
           <div>
-            <button className="inline-flex cursor-pointer items-center justify-center rounded-3xl bg-slate-500 px-4 py-3 text-sm font-medium text-slate-100 transition-all duration-200 hover:bg-slate-700">
+            <button className="inline-flex cursor-pointer items-center justify-center rounded-3xl bg-slate-500 px-3 py-2 text-sm font-medium text-slate-100 transition-all duration-200 hover:bg-slate-700">
               Add to Favorite
             </button>
           </div>
