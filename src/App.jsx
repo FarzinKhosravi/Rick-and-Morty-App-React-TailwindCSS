@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import CharacterList from "./components/CharacterList/CharacterList";
 import CharacterDetail from "./components/CharacterDetail";
 import EpisodesList from "./components/EpisodesList/EpisodesList";
+import Footer from "./components/Footer";
 
 function App() {
   const characters = [
@@ -48,13 +49,14 @@ function App() {
     <div className="min-h-screen bg-slate-900">
       <Header />
       <Introduction />
-      <section className="px-4 md:flex md:gap-x-16">
+      <section className="mb-10 px-4 md:flex md:gap-x-16">
         <CharacterList characters={characters} />
         <div className="hidden md:block md:flex-auto">
           <CharacterDetail />
           <EpisodesList />
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
