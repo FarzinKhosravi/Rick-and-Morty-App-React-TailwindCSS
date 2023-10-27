@@ -6,6 +6,10 @@ export default {
       screens: {
         xs: "430px",
       },
+
+      maxWidth: {
+        52: "207px",
+      },
     },
   },
   // eslint-disable-next-line no-undef

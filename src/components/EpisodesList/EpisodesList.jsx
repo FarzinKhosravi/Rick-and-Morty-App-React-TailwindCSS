@@ -23,7 +23,7 @@ const episodes = [
 
 function EpisodesList() {
   return (
-    <div>
+    <div className="md:rounded-xl md:bg-slate-800 md:p-4">
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h2 className="text-xl font-semibold text-slate-300">

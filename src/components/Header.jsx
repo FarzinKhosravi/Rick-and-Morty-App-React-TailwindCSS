@@ -25,11 +25,18 @@ function Header() {
             />
           </div>
         </div>
-        <div className="relative flex flex-auto items-center justify-end">
-          <HeartIcon className="h-8 w-8 text-red-600" />
-          <span className="absolute -right-1 top-0 inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs text-white">
-            3
-          </span>
+        <div className="flex flex-auto items-center justify-end">
+          <div className="mr-4 hidden sm:block">
+            <span className="text-base font-normal text-slate-400">
+              Found X Characters
+            </span>
+          </div>
+          <div className="relative sm:right-1">
+            <HeartIcon className="h-8 w-8 text-red-600" />
+            <span className="absolute -right-1 top-0 inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs text-white">
+              3
+            </span>
+          </div>
         </div>
       </nav>
     </header>

@@ -1,6 +1,6 @@
 function Introduction() {
   return (
-    <section className="mb-8 px-4">
+    <section className="mb-8 px-4 md:mb-16">
       <h1 className="mb-2 text-center text-2xl font-bold text-slate-300">
         The Rick And Morty
       </h1>

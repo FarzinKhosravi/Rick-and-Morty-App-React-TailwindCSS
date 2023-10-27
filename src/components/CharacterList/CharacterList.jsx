@@ -3,46 +3,7 @@ import CharacterDetail from "./../CharacterDetail";
 import EpisodesList from "../EpisodesList/EpisodesList";
 import { useState } from "react";
 
-const characters = [
-  {
-    id: 1,
-    name: "Rick Sanchez",
-    status: "Dead",
-    species: "Human",
-    type: "",
-    gender: "Male",
-    origin: {
-      name: "Earth (C-137)",
-      url: "https://rickandmortyapi.com/api/location/1",
-    },
-    location: {
-      name: "Citadel of Ricks",
-      url: "https://rickandmortyapi.com/api/location/3",
-    },
-    image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-    created: "2017-11-04T18:48:46.250Z",
-  },
-  {
-    id: 2,
-    name: "Summer Smith",
-    status: "Alive",
-    species: "Human",
-    type: "",
-    gender: "Female",
-    origin: {
-      name: "Earth (Replacement Dimension)",
-      url: "https://rickandmortyapi.com/api/location/20",
-    },
-    location: {
-      name: "Earth (Replacement Dimension)",
-      url: "https://rickandmortyapi.com/api/location/20",
-    },
-    image: "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
-    created: "2017-11-04T19:09:56.428Z",
-  },
-];
-
-function CharacterList() {
+function CharacterList({ characters }) {
   const [characterId, setCharacterId] = useState(null);
 
   const showMenuHandler = (id) => {
@@ -52,10 +13,17 @@ function CharacterList() {
   };
 
   return (
-    <div>
-      <h2 className="mb-4 text-xl font-semibold text-slate-300">
-        List of Characters :
-      </h2>
+    <div className="md:flex-auto">
+      <div className="flex">
+        <h2 className="mb-4 text-xl font-semibold text-slate-300">
+          List of Characters :
+        </h2>
+        <div className="-mt-3 ml-3 flex items-center justify-center sm:hidden">
+          <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-slate-700 text-xs text-white">
+            3
+          </span>
+        </div>
+      </div>
       <div>
         {characters.map((character) => {
           return (
@@ -66,11 +34,11 @@ function CharacterList() {
                 characterId={characterId}
               />
               <div
-                className={`rounded-b-xl bg-slate-800 px-3 py-4 ${
+                className={`rounded-b-xl bg-slate-800 px-3 py-4 md:hidden ${
                   character.id === characterId ? "block" : "hidden"
                 }`}
               >
-                <CharacterDetail character={character} />
+                <CharacterDetail />
                 <EpisodesList />
               </div>
             </div>

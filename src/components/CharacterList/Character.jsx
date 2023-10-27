@@ -1,9 +1,9 @@
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon, EyeIcon } from "@heroicons/react/24/outline";
 
 function Character({ character, showMenuHandler, characterId }) {
   return (
     <div
-      className={`flex cursor-pointer items-center justify-between rounded-xl bg-slate-800 p-3 transition-all duration-200 hover:bg-slate-700 ${
+      className={`flex cursor-pointer items-center justify-between rounded-xl bg-slate-800 p-3 transition-all duration-200 hover:bg-slate-700 md:rounded-xl ${
         characterId === character.id ? "rounded-b-none" : ""
       }`}
     >
@@ -33,8 +33,11 @@ function Character({ character, showMenuHandler, characterId }) {
       <div>
         <ChevronDownIcon
           onClick={() => showMenuHandler(character.id)}
-          className="h-5 w-5 text-red-600"
+          className={`h-5 w-5 text-red-600 transition-all duration-300 md:hidden ${
+            characterId === character.id ? "rotate-180" : ""
+          }`}
         />
+        <EyeIcon className="hidden h-5 w-5 text-red-600 md:block" />
       </div>
     </div>
   );
