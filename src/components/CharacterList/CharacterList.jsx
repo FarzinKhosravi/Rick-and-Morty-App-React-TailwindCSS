@@ -34,8 +34,10 @@ function CharacterList({ characters }) {
                 characterId={characterId}
               />
               <div
-                className={`rounded-b-xl bg-slate-800 px-3 py-4 md:hidden ${
-                  character.id === characterId ? "block" : "hidden"
+                className={`rounded-b-xl bg-slate-800 px-3 md:hidden ${
+                  character.id === characterId
+                    ? "min-h-screen py-4 opacity-100 transition-all "
+                    : "max-h-0 overflow-hidden opacity-0 transition-all duration-300"
                 }`}
               >
                 <CharacterDetail />
