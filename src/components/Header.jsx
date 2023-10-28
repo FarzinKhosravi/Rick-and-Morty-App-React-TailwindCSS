@@ -1,8 +1,10 @@
 import Favorites from "./Favorites";
+import { Backdrop } from "./Modal";
 
 function Header() {
   return (
     <>
+      <Backdrop />
       <header className="sticky left-0 right-0 top-0 z-0 mb-8 p-4 backdrop-blur-sm">
         <nav className="flex gap-x-6 rounded-xl bg-slate-700 px-3 py-4">
           <div className="flex flex-auto items-center justify-between">
