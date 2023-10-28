@@ -4,6 +4,7 @@ import CharacterList from "./components/CharacterList/CharacterList";
 import CharacterDetail from "./components/CharacterDetail";
 import EpisodesList from "./components/EpisodesList/EpisodesList";
 import Footer from "./components/Footer";
+import Modal from "./components/Modal";
 
 function App() {
   const characters = [
@@ -47,6 +48,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-900">
+      <Modal />
       <Header />
       <Introduction />
       <section className="mb-10 px-4 md:flex md:gap-x-16">

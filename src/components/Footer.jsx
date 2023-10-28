@@ -96,7 +96,7 @@ function Footer() {
               href="https://github.com/FarzinKhosravi"
               target="_blank"
               rel="noopener noreferrer"
-              className="mx-1 border-b-2 border-b-orange-400 text-base font-semibold text-slate-200 transition-all duration-75 hover:border-b-0 hover:text-orange-400"
+              className="mx-1 border-b border-b-orange-400 text-base font-semibold text-slate-200 transition-all duration-75 hover:border-b-0 hover:text-orange-400"
             >
               Farzin Khosravi
             </a>
