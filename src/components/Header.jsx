@@ -1,7 +1,7 @@
 import Favorites from "./Favorites";
 import { Backdrop } from "./Modal";
 
-function Header() {
+function Header({ characters }) {
   return (
     <>
       <Backdrop />
@@ -31,7 +31,7 @@ function Header() {
           <div className="flex flex-auto items-center justify-end">
             <div className="mr-4 hidden sm:block">
               <span className="text-base font-normal text-slate-400">
-                Found X Characters
+                {`Found ${characters.data.length} Characters`}
               </span>
             </div>
             <Favorites />

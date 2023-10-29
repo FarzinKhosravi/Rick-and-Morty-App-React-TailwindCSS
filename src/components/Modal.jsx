@@ -42,7 +42,7 @@ const characters = [
 
 function Modal() {
   return (
-    <div className="fixed inset-0 z-20 flex h-screen items-center justify-center py-12 backdrop-blur-sm">
+    <div className="fixed inset-0 z-20 hidden h-screen items-center justify-center py-12 backdrop-blur-sm">
       <div className="no-scrollbar z-30 h-full w-11/12 overflow-y-auto rounded-lg ">
         <div className="flex flex-col rounded-lg bg-slate-900">
           <div className="sticky left-0 right-0 top-0 bg-slate-900 p-3">
@@ -77,6 +77,6 @@ export default Modal;
 
 export function Backdrop() {
   return (
-    <div className="fixed inset-0 block h-screen w-screen backdrop-blur-sm"></div>
+    <div className="fixed inset-0 hidden h-screen w-screen backdrop-blur-sm"></div>
   );
 }

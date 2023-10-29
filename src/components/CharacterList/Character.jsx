@@ -15,13 +15,21 @@ function Character({ character, characterId, children }) {
         </div>
         <div className="flex flex-col justify-between">
           <div>
-            <span>👨🏼</span>
+            <span>{character.gender === "Male" ? "👨🏼" : "👱🏼‍♀️"}</span>
             <span className="ml-1 text-base font-medium text-slate-300">
               {character.name}
             </span>
           </div>
           <div>
-            <span className="inline-block h-3 w-3 rounded-full bg-green-600"></span>
+            <span
+              className={`inline-block h-3 w-3 rounded-full ${
+                character.status === "Alive"
+                  ? "bg-green-600"
+                  : character.status === "Dead"
+                  ? "bg-red-600"
+                  : "bg-yellow-400"
+              }`}
+            ></span>
             <span className="ml-2 text-base font-normal text-slate-300">
               {`${character.status} - ${character.species}`}
             </span>
