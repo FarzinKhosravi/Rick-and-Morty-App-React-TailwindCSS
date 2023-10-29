@@ -1,8 +1,48 @@
-import { EyeIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import { TrashIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import Character from "./CharacterList/Character";
+
+const characters = [
+  {
+    id: 1,
+    name: "Rick Sanchez",
+    status: "Dead",
+    species: "Human",
+    type: "",
+    gender: "Male",
+    origin: {
+      name: "Earth (C-137)",
+      url: "https://rickandmortyapi.com/api/location/1",
+    },
+    location: {
+      name: "Citadel of Ricks",
+      url: "https://rickandmortyapi.com/api/location/3",
+    },
+    image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+    created: "2017-11-04T18:48:46.250Z",
+  },
+  {
+    id: 2,
+    name: "Summer Smith",
+    status: "Alive",
+    species: "Human",
+    type: "",
+    gender: "Female",
+    origin: {
+      name: "Earth (Replacement Dimension)",
+      url: "https://rickandmortyapi.com/api/location/20",
+    },
+    location: {
+      name: "Earth (Replacement Dimension)",
+      url: "https://rickandmortyapi.com/api/location/20",
+    },
+    image: "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
+    created: "2017-11-04T19:09:56.428Z",
+  },
+];
 
 function Modal() {
   return (
-    <div className="fixed inset-0 z-20 hidden h-screen items-center justify-center py-12 backdrop-blur-sm">
+    <div className="fixed inset-0 z-20 flex h-screen items-center justify-center py-12 backdrop-blur-sm">
       <div className="no-scrollbar z-30 h-full w-11/12 overflow-y-auto rounded-lg ">
         <div className="flex flex-col rounded-lg bg-slate-900">
           <div className="sticky left-0 right-0 top-0 bg-slate-900 p-3">
@@ -18,42 +58,13 @@ function Modal() {
           </div>
           <div className="flex flex-col gap-y-4 px-3 pb-3">
             {/* *** */}
-
-            <div className="flex cursor-pointer items-center justify-between rounded-xl bg-slate-800 p-3 transition-all duration-200 hover:bg-slate-700 md:rounded-xl">
-              <div className="flex gap-x-4">
-                <div>
-                  <img
-                    className="block h-14 w-14 rounded-2xl"
-                    src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-                    alt="rick-img"
-                  />
-                </div>
-                <div className="flex flex-col justify-between">
-                  <div>
-                    <span>👨🏼</span>
-                    <span className="ml-1 text-base font-medium text-slate-300">
-                      Rick Sanchez
-                    </span>
-                  </div>
-                  <div>
-                    <span className="inline-block h-3 w-3 rounded-full bg-green-600"></span>
-                    <span className="ml-2 text-base font-normal text-slate-300">
-                      Alive-Human
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div>
-                {/* <ChevronDownIcon
-                onClick={() => showMenuHandler(character.id)}
-                className={`h-5 w-5 text-red-600 transition-all duration-300 md:hidden ${
-                  characterId === character.id ? "rotate-180" : ""
-                }`}
-              /> */}
-                <EyeIcon className=" h-5 w-5 text-red-600 md:block" />
-              </div>
-            </div>
-
+            {characters.map((character) => {
+              return (
+                <Character character={character} key={character.id}>
+                  <TrashIcon className="h-5 w-5 text-red-600" />
+                </Character>
+              );
+            })}
             {/* *** */}
           </div>
         </div>
@@ -66,6 +77,6 @@ export default Modal;
 
 export function Backdrop() {
   return (
-    <div className="fixed inset-0 hidden h-screen w-screen backdrop-blur-sm"></div>
+    <div className="fixed inset-0 block h-screen w-screen backdrop-blur-sm"></div>
   );
 }

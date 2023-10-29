@@ -24,7 +24,7 @@ function CharacterDetail() {
         Character Detail :
       </h2>
       <div className="md:flex md:overflow-hidden md:rounded-xl md:bg-slate-800">
-        <div className="md:max-w-52 hidden w-full md:block">
+        <div className="hidden w-full md:block md:max-w-52">
           <img
             className="block h-14 w-14 rounded-2xl md:h-full md:w-full md:rounded-none"
             src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
@@ -34,31 +34,31 @@ function CharacterDetail() {
         <div className="flex flex-col md:ml-4 md:w-full md:py-4">
           <div className="mb-4 flex flex-col">
             <div className="mb-1">
-              <span>👨🏼</span>
-              <span className="ml-1 text-sm font-medium text-slate-300">
+              <span className="md:text-lg">👨🏼</span>
+              <span className="ml-1 text-sm font-medium text-slate-300 md:text-lg md:font-semibold">
                 {character.name}
               </span>
             </div>
             <div>
               <span className="inline-block h-3 w-3 rounded-full bg-green-600"></span>
-              <span className="ml-2 text-sm font-normal text-slate-300">
+              <span className="ml-2 text-sm font-normal text-slate-300 md:text-base">
                 {`${character.status} - ${character.species}`}
               </span>
             </div>
           </div>
           <div className="flex flex-col">
             <div className="mb-1">
-              <span className="block text-sm text-slate-500">
+              <span className="block text-sm text-slate-500 md:text-base">
                 Last known location:
               </span>
             </div>
             <div className="mb-5">
-              <span className="block text-sm font-medium text-slate-300">
+              <span className="block text-sm font-medium text-slate-300 md:text-base md:font-semibold">
                 {character.location.name}
               </span>
             </div>
             <div>
-              <button className="inline-flex cursor-pointer items-center justify-center rounded-3xl bg-slate-500 px-3 py-2 text-sm font-medium text-slate-100 transition-all duration-200 hover:bg-slate-700">
+              <button className="inline-flex cursor-pointer items-center justify-center rounded-3xl bg-slate-500 px-3 py-2 text-sm font-medium text-slate-100 transition-all duration-200 hover:bg-slate-700 md:px-4 md:text-base md:font-semibold">
                 Add to Favorite
               </button>
             </div>

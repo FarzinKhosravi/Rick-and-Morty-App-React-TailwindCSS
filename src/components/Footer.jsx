@@ -3,25 +3,24 @@ import { BiLogoGithub, BiLogoTelegram, BiSolidHeart } from "react-icons/bi";
 function Footer() {
   return (
     <footer className="bg-slate-800">
-      <div className="flex flex-col px-4 py-8">
+      <div className="mx-auto flex max-w-lg flex-col px-4 py-8">
         <div className="mb-8">
           <div className="mb-3 flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-300">
-              {" "}
+            <span className="text-xs font-medium text-slate-300 sm:text-sm md:text-base md:font-semibold">
               CHARACTERS: 826
             </span>
-            <span className="text-xs font-medium text-slate-300">
+            <span className="text-xs font-medium text-slate-300 sm:text-sm md:text-base md:font-semibold">
               LOCATIONS: 126
             </span>
-            <span className="text-xs font-medium text-slate-300">
+            <span className="text-xs font-medium text-slate-300 sm:text-sm md:text-base md:font-semibold">
               EPISODES: 51
             </span>
           </div>
           <div className="flex items-center justify-center">
-            <span className="text-xs font-medium text-slate-300">
+            <span className="text-xs font-medium text-slate-300 sm:text-sm md:text-base md:font-semibold">
               SERVER STATUS
             </span>
-            <span className="ml-2 block h-2 w-2 rounded-full bg-green-600"></span>
+            <span className="ml-2 block h-2 w-2 rounded-full bg-green-600 sm:h-3 sm:w-3"></span>
           </div>
         </div>
         <div className="mb-10 flex items-center justify-evenly">
@@ -90,13 +89,13 @@ function Footer() {
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <span className="text-slate-500">
+          <span className="text-slate-500 md:text-base md:font-medium">
             ❮❯ by
             <a
               href="https://github.com/FarzinKhosravi"
               target="_blank"
               rel="noopener noreferrer"
-              className="mx-1 border-b border-b-orange-400 text-base font-semibold text-slate-200 transition-all duration-75 hover:border-b-0 hover:text-orange-400"
+              className="mx-1 border-b border-b-orange-400 text-sm font-normal text-slate-200 transition-all duration-75 hover:border-b-0 hover:text-orange-400 sm:font-medium md:text-base md:font-semibold"
             >
               Farzin Khosravi
             </a>
