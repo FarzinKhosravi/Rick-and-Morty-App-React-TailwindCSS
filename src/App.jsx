@@ -89,10 +89,15 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     charactersDispatch({ type: "CHARACTERS_PENDING" });
 
     axios
-      .get(`https://rickandmortyapi.com/api/character/?name=${userSearch}`)
+      .get(`https://rickandmortyapi.com/api/character/?name=${userSearch}`, {
+        signal,
+      })
       .then(({ data }) =>
         charactersDispatch({
           type: "CHARACTERS_SUCCESS",
@@ -105,7 +110,13 @@ function App() {
         charactersDispatch({ type: "CHARACTERS_REJECTED" });
 
         toast.error(error.response.data.error);
+
+        if (!axios.isCancel()) return;
       });
+
+    return () => {
+      controller.abort();
+    };
   }, [userSearch]);
 
   const showCharacterDetailHandler = (id) => {
