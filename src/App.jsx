@@ -49,6 +49,8 @@ function App() {
 
   const [episodes, setEpisodes] = useState(null);
 
+  const [userSearch, setUserSearch] = useState("");
+
   const [characters, charactersDispatch] = useReducer(
     charactersReducer,
     initialCharacters
@@ -85,6 +87,26 @@ function App() {
 
     fetchAllCharacters();
   }, []);
+
+  useEffect(() => {
+    charactersDispatch({ type: "CHARACTERS_PENDING" });
+
+    axios
+      .get(`https://rickandmortyapi.com/api/character/?name=${userSearch}`)
+      .then(({ data }) =>
+        charactersDispatch({
+          type: "CHARACTERS_SUCCESS",
+          payload: data.results,
+        })
+      )
+      .catch((error) => {
+        console.log(error);
+
+        charactersDispatch({ type: "CHARACTERS_REJECTED" });
+
+        toast.error(error.response.data.error);
+      });
+  }, [userSearch]);
 
   const showCharacterDetailHandler = (id) => {
     console.log("clicked !!", id);
@@ -128,9 +150,17 @@ function App() {
     fetchCharacterData(id);
   };
 
+  const userSearchHandler = (e) => {
+    setUserSearch(e.target.value);
+  };
+
   return (
     <div className="min-h-screen bg-slate-900">
-      <Header characters={characters} />
+      <Header
+        characters={characters}
+        onUserSearch={userSearchHandler}
+        userSearch={userSearch}
+      />
       <Introduction />
       <section className="mx-auto mb-20 px-4 md:flex md:gap-x-16 2xl:max-w-screen-2xl">
         <CharacterList

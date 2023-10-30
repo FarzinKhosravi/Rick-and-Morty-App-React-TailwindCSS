@@ -1,7 +1,7 @@
 import Favorites from "./Favorites";
 import { Backdrop } from "./Modal";
 
-function Header({ characters }) {
+function Header({ characters, onUserSearch, userSearch }) {
   return (
     <>
       <Backdrop />
@@ -24,7 +24,9 @@ function Header({ characters }) {
               <input
                 className="block w-full rounded-xl bg-slate-500 text-base text-slate-200  placeholder:text-slate-400"
                 type="text"
+                value={userSearch}
                 placeholder="Search..."
+                onChange={onUserSearch}
               />
             </div>
           </div>
