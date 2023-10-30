@@ -1,7 +1,7 @@
 import { ArrowUpCircleIcon } from "@heroicons/react/24/outline";
 import Episode from "./Episode";
 
-function EpisodesList({ episodes, characterId }) {
+function EpisodesList({ episodes, characterId, onSortDate, sortType }) {
   if (!episodes || !characterId) return null;
 
   return (
@@ -13,7 +13,12 @@ function EpisodesList({ episodes, characterId }) {
           </h2>
         </div>
         <div>
-          <ArrowUpCircleIcon className="h-6 w-6 text-red-600" />
+          <ArrowUpCircleIcon
+            onClick={onSortDate}
+            className={`h-6 w-6 text-red-600 transition-all duration-200 ${
+              sortType === "latest" ? "rotate-180" : ""
+            }`}
+          />
         </div>
       </div>
       <div>

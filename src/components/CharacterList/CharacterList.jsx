@@ -14,6 +14,8 @@ function CharacterList({
   onShowCharacterDetail,
   characterDetail,
   episodes,
+  onSortDate,
+  sortType,
 }) {
   return (
     <div className="md:w-2/5">
@@ -64,7 +66,12 @@ function CharacterList({
                     characterId={characterId}
                     characterDetail={characterDetail}
                   />
-                  <EpisodesList episodes={episodes} characterId={characterId} />
+                  <EpisodesList
+                    onSortDate={onSortDate}
+                    episodes={episodes}
+                    characterId={characterId}
+                    sortType={sortType}
+                  />
                 </div>
               </div>
             );

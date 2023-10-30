@@ -4,7 +4,7 @@ function CharacterDetail({ characterDetail, characterId }) {
   const { loading, data } = characterDetail;
 
   if (!data || !characterId)
-    return <div className="hidden md:block">Please a character !!</div>;
+    return <div className="hidden md:block">Please Select a character !!</div>;
 
   if (loading) return <Loader />;
 

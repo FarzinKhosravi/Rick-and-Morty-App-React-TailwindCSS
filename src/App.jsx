@@ -47,9 +47,11 @@ const characterDetailReducer = (state, action) => {
 function App() {
   const [characterId, setCharacterId] = useState(null);
 
-  const [episodes, setEpisodes] = useState(null);
+  const [episodes, setEpisodes] = useState([]);
 
   const [userSearch, setUserSearch] = useState("");
+
+  const [sortType, setSortType] = useState("earliest");
 
   const [characters, charactersDispatch] = useReducer(
     charactersReducer,
@@ -77,7 +79,7 @@ function App() {
           payload: response.data.results,
         });
       } catch (error) {
-        console.log(error);
+        // console.log(error);
 
         charactersDispatch({ type: "CHARACTERS_REJECTED" });
 
@@ -105,7 +107,7 @@ function App() {
         })
       )
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
 
         charactersDispatch({ type: "CHARACTERS_REJECTED" });
 
@@ -118,6 +120,35 @@ function App() {
       controller.abort();
     };
   }, [userSearch]);
+
+  useEffect(() => {
+    if (episodes.length) {
+      switch (sortType) {
+        case "earliest":
+          {
+            const sortedEpisodes = [...episodes].sort((a, b) => {
+              return new Date(a.created) > new Date(b.created) ? 1 : -1;
+            });
+
+            setEpisodes(sortedEpisodes);
+          }
+          break;
+
+        case "latest":
+          {
+            const sortedEpisodes = [...episodes].sort((a, b) => {
+              return new Date(a.created) > new Date(b.created) ? -1 : 1;
+            });
+
+            setEpisodes(sortedEpisodes);
+          }
+          break;
+
+        default:
+          break;
+      }
+    }
+  }, [sortType]);
 
   const showCharacterDetailHandler = (id) => {
     console.log("clicked !!", id);
@@ -146,7 +177,13 @@ function App() {
           payload: data,
         });
 
-        setEpisodes([episodesList].flat());
+        const episodesArray = [episodesList].flat();
+
+        const sortedEpisodes = [...episodesArray].sort((a, b) => {
+          return new Date(a.created) > new Date(b.created) ? 1 : -1;
+        });
+
+        setEpisodes(sortedEpisodes);
       } catch (error) {
         console.log(error);
 
@@ -165,6 +202,12 @@ function App() {
     setUserSearch(e.target.value);
   };
 
+  const sortDateHandler = () => {
+    // console.log("sort");
+
+    setSortType(sortType === "earliest" ? "latest" : "earliest");
+  };
+
   return (
     <div className="min-h-screen bg-slate-900">
       <Header
@@ -180,13 +223,20 @@ function App() {
           onShowCharacterDetail={showCharacterDetailHandler}
           characterDetail={characterDetail}
           episodes={episodes}
+          onSortDate={sortDateHandler}
+          sortType={sortType}
         />
         <div className="hidden text-slate-100 md:block md:w-3/5">
           <CharacterDetail
             characterId={characterId}
             characterDetail={characterDetail}
           />
-          <EpisodesList episodes={episodes} characterId={characterId} />
+          <EpisodesList
+            onSortDate={sortDateHandler}
+            episodes={episodes}
+            characterId={characterId}
+            sortType={sortType}
+          />
         </div>
       </section>
       <Footer />
