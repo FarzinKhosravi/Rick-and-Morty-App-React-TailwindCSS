@@ -10,7 +10,7 @@ function Character({ character, characterId, children }) {
           <img
             className="block h-14 w-14 rounded-2xl"
             src={character.image}
-            alt="rick-img"
+            alt={character.name}
           />
         </div>
         <div className="flex flex-col justify-between">

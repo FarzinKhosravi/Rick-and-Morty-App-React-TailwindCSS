@@ -1,19 +1,20 @@
 import Character from "./Character";
 import CharacterDetail from "./../CharacterDetail";
 import EpisodesList from "../EpisodesList/EpisodesList";
-import { useState } from "react";
-import { ChevronDownIcon, EyeIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronDownIcon,
+  EyeIcon,
+  EyeSlashIcon,
+} from "@heroicons/react/24/outline";
 import Loader from "./../Loader";
 
-function CharacterList({ characters }) {
-  const [characterId, setCharacterId] = useState(null);
-
-  const showMenuHandler = (id) => {
-    console.log("clicked !!", id);
-
-    setCharacterId(characterId === id ? null : id);
-  };
-
+function CharacterList({
+  characterId,
+  characters,
+  onShowCharacterDetail,
+  characterDetail,
+  episodes,
+}) {
   return (
     <div className="md:w-2/5">
       <div className="flex">
@@ -35,12 +36,22 @@ function CharacterList({ characters }) {
               <div className="mb-4 last:mb-0" key={character.id}>
                 <Character character={character} characterId={characterId}>
                   <ChevronDownIcon
-                    onClick={() => showMenuHandler(character.id)}
+                    onClick={() => onShowCharacterDetail(character.id)}
                     className={`h-5 w-5 text-red-600 transition-all duration-300 md:hidden ${
                       characterId === character.id ? "rotate-180" : ""
                     }`}
                   />
-                  <EyeIcon className="hidden h-5 w-5 text-red-600 md:block" />
+                  {characterId === character.id ? (
+                    <EyeSlashIcon
+                      onClick={() => onShowCharacterDetail(character.id)}
+                      className="hidden h-5 w-5 text-red-600 md:block"
+                    />
+                  ) : (
+                    <EyeIcon
+                      onClick={() => onShowCharacterDetail(character.id)}
+                      className="hidden h-5 w-5 text-red-600 md:block"
+                    />
+                  )}
                 </Character>
                 <div
                   className={`rounded-b-xl bg-slate-800 px-3 md:hidden ${
@@ -49,8 +60,11 @@ function CharacterList({ characters }) {
                       : "max-h-0 overflow-hidden opacity-0 transition-all duration-300"
                   }`}
                 >
-                  <CharacterDetail />
-                  <EpisodesList />
+                  <CharacterDetail
+                    characterId={characterId}
+                    characterDetail={characterDetail}
+                  />
+                  <EpisodesList episodes={episodes} characterId={characterId} />
                 </div>
               </div>
             );
