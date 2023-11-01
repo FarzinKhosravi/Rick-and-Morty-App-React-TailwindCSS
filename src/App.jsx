@@ -18,7 +18,7 @@ const charactersReducer = (state, action) => {
       return { loading: true, data: [] };
 
     case "CHARACTERS_SUCCESS":
-      return { loading: false, data: [...action.payload.slice(0, 8)] };
+      return { loading: false, data: [...action.payload.slice(0, 5)] };
 
     case "CHARACTERS_REJECTED":
       return { loading: false, data: [] };
@@ -52,6 +52,10 @@ function App() {
   const [userSearch, setUserSearch] = useState("");
 
   const [sortType, setSortType] = useState("earliest");
+
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("FAVORITES")) || []
+  );
 
   const [characters, charactersDispatch] = useReducer(
     charactersReducer,
@@ -208,12 +212,40 @@ function App() {
     setSortType(sortType === "earliest" ? "latest" : "earliest");
   };
 
+  const addFavoriteCharacter = (id) => {
+    console.log("id :", id);
+
+    const selectedFavoriteCharacter = characters.data.find(
+      (character) => character.id === id
+    );
+
+    const favoritesData = [...favorites, selectedFavoriteCharacter];
+
+    localStorage.setItem("FAVORITES", JSON.stringify(favoritesData));
+
+    setFavorites(favoritesData);
+  };
+
+  const removeFavoriteCharacter = (id) => {
+    // console.log("id remove :", id);
+
+    const updatedFavorites = favorites.filter(
+      (character) => character.id !== id
+    );
+
+    localStorage.setItem("FAVORITES", JSON.stringify(updatedFavorites));
+
+    setFavorites(updatedFavorites);
+  };
+
   return (
     <div className="min-h-screen bg-slate-900">
       <Header
         characters={characters}
         onUserSearch={userSearchHandler}
         userSearch={userSearch}
+        favorites={favorites}
+        onRemoveFavoriteCharacter={removeFavoriteCharacter}
       />
       <Introduction />
       <section className="mx-auto mb-20 px-4 md:flex md:gap-x-16 2xl:max-w-screen-2xl">
@@ -225,11 +257,15 @@ function App() {
           episodes={episodes}
           onSortDate={sortDateHandler}
           sortType={sortType}
+          onAddFavoriteCharacter={addFavoriteCharacter}
+          favorites={favorites}
         />
         <div className="hidden text-slate-100 md:block md:w-3/5">
           <CharacterDetail
+            onAddFavoriteCharacter={addFavoriteCharacter}
             characterId={characterId}
             characterDetail={characterDetail}
+            favorites={favorites}
           />
           <EpisodesList
             onSortDate={sortDateHandler}

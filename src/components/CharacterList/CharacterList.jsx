@@ -16,6 +16,8 @@ function CharacterList({
   episodes,
   onSortDate,
   sortType,
+  onAddFavoriteCharacter,
+  favorites,
 }) {
   return (
     <div className="md:w-2/5">
@@ -65,6 +67,8 @@ function CharacterList({
                   <CharacterDetail
                     characterId={characterId}
                     characterDetail={characterDetail}
+                    onAddFavoriteCharacter={onAddFavoriteCharacter}
+                    favorites={favorites}
                   />
                   <EpisodesList
                     onSortDate={onSortDate}

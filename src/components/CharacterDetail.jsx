@@ -1,10 +1,23 @@
 import Loader from "./Loader";
 
-function CharacterDetail({ characterDetail, characterId }) {
+function CharacterDetail({
+  characterDetail,
+  characterId,
+  onAddFavoriteCharacter,
+  favorites,
+}) {
   const { loading, data } = characterDetail;
 
   if (!data || !characterId)
-    return <div className="hidden md:block">Please Select a character !!</div>;
+    return (
+      <div className="hidden md:block">
+        <span className="text-lg font-black italic">
+          Please Select a Character
+        </span>
+        &nbsp;
+        <span className="text-xl">😊</span>
+      </div>
+    );
 
   if (loading) return <Loader />;
 
@@ -58,9 +71,18 @@ function CharacterDetail({ characterDetail, characterId }) {
               </span>
             </div>
             <div>
-              <button className="inline-flex cursor-pointer items-center justify-center rounded-3xl bg-slate-500 px-3 py-2 text-sm font-medium text-slate-100 transition-all duration-200 hover:bg-slate-700 md:px-4 md:text-base md:font-semibold">
-                Add to Favorite
-              </button>
+              {favorites.find((favorite) => favorite.id === data.id) ? (
+                <div className="text-sm font-semibold text-slate-300">
+                  Already Added To Favorites 😎
+                </div>
+              ) : (
+                <button
+                  onClick={() => onAddFavoriteCharacter(characterId)}
+                  className="inline-flex cursor-pointer items-center justify-center rounded-3xl bg-slate-500 px-3 py-2 text-sm font-medium text-slate-100 transition-all duration-200 hover:bg-slate-700 md:px-4 md:text-base md:font-semibold"
+                >
+                  Add to Favorite
+                </button>
+              )}
             </div>
           </div>
         </div>
