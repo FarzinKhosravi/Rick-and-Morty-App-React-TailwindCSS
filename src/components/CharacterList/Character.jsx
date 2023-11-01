@@ -1,4 +1,8 @@
-function Character({ character, characterId, children }) {
+import { useCharacterId } from "../../context/CharacterIdContext";
+
+function Character({ character, children }) {
+  const characterId = useCharacterId();
+
   return (
     <div
       className={`flex cursor-pointer items-center justify-between rounded-xl bg-slate-800 p-3 transition-all duration-200 hover:bg-slate-700 md:rounded-xl ${

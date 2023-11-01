@@ -1,12 +1,14 @@
 import { TrashIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import Character from "./CharacterList/Character";
+import {
+  useFavorites,
+  useFavoritesDispatch,
+} from "../context/FavoritesContext";
 
-function Modal({
-  isShowModal,
-  onHideModal,
-  favorites,
-  onRemoveFavoriteCharacter,
-}) {
+function Modal({ isShowModal, onHideModal }) {
+  const favorites = useFavorites();
+  const { removeFavoriteCharacter } = useFavoritesDispatch();
+
   return (
     <div
       className={`fixed inset-0 z-10 h-screen items-center justify-center bg-slate-900/50 py-12 ${
@@ -36,7 +38,7 @@ function Modal({
               return (
                 <Character character={character} key={character.id}>
                   <TrashIcon
-                    onClick={() => onRemoveFavoriteCharacter(character.id)}
+                    onClick={() => removeFavoriteCharacter(character.id)}
                     className="h-5 w-5 text-red-600"
                   />
                 </Character>

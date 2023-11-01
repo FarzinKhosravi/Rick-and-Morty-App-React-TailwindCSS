@@ -1,12 +1,53 @@
+import { useEffect, useState } from "react";
+import {
+  useCharacters,
+  useCharactersDispatch,
+} from "../context/CharactersContext";
 import Favorites from "./Favorites";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-function Header({
-  characters,
-  onUserSearch,
-  userSearch,
-  favorites,
-  onRemoveFavoriteCharacter,
-}) {
+function Header() {
+  const { characters } = useCharacters();
+  const charactersDispatch = useCharactersDispatch();
+
+  const [userSearch, setUserSearch] = useState("");
+
+  const userSearchHandler = (e) => {
+    setUserSearch(e.target.value);
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    charactersDispatch({ type: "CHARACTERS_PENDING" });
+
+    axios
+      .get(`https://rickandmortyapi.com/api/character/?name=${userSearch}`, {
+        signal,
+      })
+      .then(({ data }) =>
+        charactersDispatch({
+          type: "CHARACTERS_SUCCESS",
+          payload: data.results,
+        })
+      )
+      .catch((error) => {
+        // console.log(error);
+
+        charactersDispatch({ type: "CHARACTERS_REJECTED" });
+
+        toast.error(error.response.data.error);
+
+        if (!axios.isCancel()) return;
+      });
+
+    return () => {
+      controller.abort();
+    };
+  }, [userSearch]);
+
   return (
     <header className="sticky left-0 right-0 top-0 z-10 mb-8 p-4 backdrop-blur-sm">
       <nav className="mx-auto flex gap-x-6 rounded-xl bg-slate-700 px-3 py-4 2xl:max-w-screen-2xl">
@@ -29,20 +70,17 @@ function Header({
               type="text"
               value={userSearch}
               placeholder="Search..."
-              onChange={onUserSearch}
+              onChange={userSearchHandler}
             />
           </div>
         </div>
         <div className="flex flex-auto items-center justify-end">
           <div className="mr-4 hidden sm:block">
             <span className="text-base font-normal text-slate-400">
-              {`Found ${characters.data.length} Characters`}
+              {`Found ${characters.length} Characters`}
             </span>
           </div>
-          <Favorites
-            onRemoveFavoriteCharacter={onRemoveFavoriteCharacter}
-            favorites={favorites}
-          />
+          <Favorites  />
         </div>
       </nav>
     </header>
