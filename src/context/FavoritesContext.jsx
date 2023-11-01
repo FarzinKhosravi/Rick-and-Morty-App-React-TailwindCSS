@@ -1,11 +1,13 @@
 import { createContext, useContext, useState } from "react";
+import saveLocalStorage from "../localStorage/saveLocalStorage";
+import getLocalStorage from "./../localStorage/getLocalStorage";
 
 const FavoritesContext = createContext();
 const FavoritesDispatcherContext = createContext();
 
 function FavoritesProvider({ children }) {
   const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("FAVORITES")) || []
+    getLocalStorage("FAVORITES") || []
   );
 
   return (
@@ -31,19 +33,17 @@ export const useFavoritesDispatch = () => {
 
     const favoritesData = [...favorites, selectedFavoriteCharacter];
 
-    localStorage.setItem("FAVORITES", JSON.stringify(favoritesData));
+    saveLocalStorage("FAVORITES", favoritesData);
 
     setFavorites(favoritesData);
   };
 
   const removeFavoriteCharacter = (id) => {
-    // console.log("id remove :", id);
-
     const updatedFavorites = favorites.filter(
       (character) => character.id !== id
     );
 
-    localStorage.setItem("FAVORITES", JSON.stringify(updatedFavorites));
+    saveLocalStorage("FAVORITES", updatedFavorites);
 
     setFavorites(updatedFavorites);
   };

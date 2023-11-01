@@ -85,8 +85,6 @@ function CharacterList() {
 
         setEpisodes(sortedEpisodes);
       } catch (error) {
-        console.log(error);
-
         characterDetailDispatch({ type: "CHARACTER_DETAIL_REJECTED" });
 
         toast.error(error.response.data.error);
@@ -117,7 +115,7 @@ function CharacterList() {
           characters.map((character) => {
             return (
               <div className="mb-4 last:mb-0" key={character.id}>
-                <Character character={character} characterId={characterId}>
+                <Character character={character}>
                   <ChevronDownIcon
                     onClick={() => showCharacterDetailHandler(character.id)}
                     className={`h-5 w-5 text-red-600 transition-all duration-300 md:hidden ${
@@ -143,8 +141,8 @@ function CharacterList() {
                       : "max-h-0 overflow-hidden opacity-0 transition-all duration-300"
                   }`}
                 >
-                  <CharacterDetail characterId={characterId} />
-                  <EpisodesList characterId={characterId} />
+                  <CharacterDetail />
+                  <EpisodesList />
                 </div>
               </div>
             );

@@ -10,12 +10,7 @@ import toast from "react-hot-toast";
 function Header() {
   const { characters } = useCharacters();
   const charactersDispatch = useCharactersDispatch();
-
   const [userSearch, setUserSearch] = useState("");
-
-  const userSearchHandler = (e) => {
-    setUserSearch(e.target.value);
-  };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -34,8 +29,6 @@ function Header() {
         })
       )
       .catch((error) => {
-        // console.log(error);
-
         charactersDispatch({ type: "CHARACTERS_REJECTED" });
 
         toast.error(error.response.data.error);
@@ -47,6 +40,10 @@ function Header() {
       controller.abort();
     };
   }, [userSearch]);
+
+  const userSearchHandler = (e) => {
+    setUserSearch(e.target.value);
+  };
 
   return (
     <header className="sticky left-0 right-0 top-0 z-10 mb-8 p-4 backdrop-blur-sm">
@@ -80,7 +77,7 @@ function Header() {
               {`Found ${characters.length} Characters`}
             </span>
           </div>
-          <Favorites  />
+          <Favorites />
         </div>
       </nav>
     </header>
