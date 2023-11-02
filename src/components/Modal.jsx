@@ -30,13 +30,13 @@ function Modal({ isShowModal, onHideModal }) {
     >
       <div
         onClick={onHideModal}
-        className={`fixed inset-0 h-screen w-screen bg-slate-900/50 ${
+        className={`fixed inset-0 h-screen cursor-pointer bg-slate-900/50 ${
           isShowModal ? "block" : "hidden"
         }`}
       ></div>
 
       <div className="no-scrollbar h-full w-11/12 overflow-y-auto rounded-lg">
-        <div className="flex flex-col rounded-lg bg-slate-900">
+        <div className="flex flex-col rounded-lg bg-slate-900 shadow-xl shadow-slate-300/30">
           <div className="sticky left-0 right-0 top-0 z-20 bg-slate-900 p-3">
             <div className="mb-1 flex items-center justify-between pb-1">
               <h2 className="text-lg font-semibold text-slate-300">
@@ -45,7 +45,7 @@ function Modal({ isShowModal, onHideModal }) {
               <div>
                 <XCircleIcon
                   onClick={onHideModal}
-                  className="h-6 w-6 text-red-600"
+                  className="h-6 w-6 cursor-pointer text-red-600"
                 />
               </div>
             </div>
