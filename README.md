@@ -4,12 +4,6 @@
 
 ![preview](./public/Preview-Project.gif)
 
-   <img src="./public/Screenshot-Project-01.png">
-   <img src="./public/Screenshot-Project-02.png">
-   <img src="./public/Screenshot-Project-03.png">
-   <img src="./public/Screenshot-Project-04.png">
-   <img src="./public/Screenshot-Project-05.png">
-
 ---
 
 ## Description 📝
