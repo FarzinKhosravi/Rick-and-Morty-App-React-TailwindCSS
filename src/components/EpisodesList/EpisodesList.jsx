@@ -11,6 +11,12 @@ function EpisodesList() {
 
   if (!episodes || !characterId) return null;
 
+  function renderEpisodesList() {
+    return episodes.map((episode, index) => {
+      return <Episode index={index} key={episode.id} episode={episode} />;
+    });
+  }
+
   return (
     <div className="md:rounded-xl md:bg-slate-800 md:p-4">
       <div className="mb-6 flex items-center justify-between">
@@ -28,11 +34,7 @@ function EpisodesList() {
           />
         </div>
       </div>
-      <div>
-        {episodes.map((episode, index) => {
-          return <Episode index={index} key={episode.id} episode={episode} />;
-        })}
-      </div>
+      <div>{renderEpisodesList()}</div>
     </div>
   );
 }

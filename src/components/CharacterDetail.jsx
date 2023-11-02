@@ -27,6 +27,21 @@ function CharacterDetail() {
 
   if (loading) return <Loader />;
 
+  function favoriteLogic() {
+    return favorites.find((favorite) => favorite.id === characterDetail.id) ? (
+      <div className="text-sm font-semibold text-slate-300">
+        Already Added To Favorites 😎
+      </div>
+    ) : (
+      <button
+        onClick={() => addFavoriteCharacter(characters, characterId)}
+        className="inline-flex cursor-pointer items-center justify-center rounded-3xl bg-slate-500 px-3 py-2 text-sm font-medium text-slate-100 transition-all duration-200 hover:bg-slate-700 md:px-4 md:text-base md:font-semibold"
+      >
+        Add to Favorite
+      </button>
+    );
+  }
+
   return (
     <div className="mb-8 ">
       <h2 className="mb-4 text-xl font-semibold text-slate-300">
@@ -76,22 +91,7 @@ function CharacterDetail() {
                 {characterDetail.location.name}
               </span>
             </div>
-            <div>
-              {favorites.find(
-                (favorite) => favorite.id === characterDetail.id
-              ) ? (
-                <div className="text-sm font-semibold text-slate-300">
-                  Already Added To Favorites 😎
-                </div>
-              ) : (
-                <button
-                  onClick={() => addFavoriteCharacter(characters, characterId)}
-                  className="inline-flex cursor-pointer items-center justify-center rounded-3xl bg-slate-500 px-3 py-2 text-sm font-medium text-slate-100 transition-all duration-200 hover:bg-slate-700 md:px-4 md:text-base md:font-semibold"
-                >
-                  Add to Favorite
-                </button>
-              )}
-            </div>
+            <div>{favoriteLogic()}</div>
           </div>
         </div>
       </div>

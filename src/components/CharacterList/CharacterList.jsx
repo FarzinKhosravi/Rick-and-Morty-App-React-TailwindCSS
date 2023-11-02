@@ -18,6 +18,48 @@ function CharacterList() {
   const showCharacterDataHandler = useFetchCharacterData();
   useFetchAllCharacters();
 
+  function renderCharactersList() {
+    return loading ? (
+      <Loader />
+    ) : (
+      characters.map((character) => {
+        return (
+          <div className="mb-4 last:mb-0" key={character.id}>
+            <Character character={character}>
+              <ChevronDownIcon
+                onClick={() => showCharacterDataHandler(character.id)}
+                className={`h-5 w-5 text-red-600 transition-all duration-300 md:hidden ${
+                  characterId === character.id ? "rotate-180" : ""
+                }`}
+              />
+              {characterId === character.id ? (
+                <EyeSlashIcon
+                  onClick={() => showCharacterDataHandler(character.id)}
+                  className="hidden h-5 w-5 text-red-600 md:block"
+                />
+              ) : (
+                <EyeIcon
+                  onClick={() => showCharacterDataHandler(character.id)}
+                  className="hidden h-5 w-5 text-red-600 md:block"
+                />
+              )}
+            </Character>
+            <div
+              className={`rounded-b-xl bg-slate-800 px-3 md:hidden ${
+                character.id === characterId
+                  ? "min-h-screen py-4 opacity-100 transition-all "
+                  : "max-h-0 overflow-hidden opacity-0 transition-all duration-300"
+              }`}
+            >
+              <CharacterDetail />
+              <EpisodesList />
+            </div>
+          </div>
+        );
+      })
+    );
+  }
+
   return (
     <div className="md:w-2/5">
       <div className="flex">
@@ -30,47 +72,7 @@ function CharacterList() {
           </span>
         </div>
       </div>
-      <div>
-        {loading ? (
-          <Loader />
-        ) : (
-          characters.map((character) => {
-            return (
-              <div className="mb-4 last:mb-0" key={character.id}>
-                <Character character={character}>
-                  <ChevronDownIcon
-                    onClick={() => showCharacterDataHandler(character.id)}
-                    className={`h-5 w-5 text-red-600 transition-all duration-300 md:hidden ${
-                      characterId === character.id ? "rotate-180" : ""
-                    }`}
-                  />
-                  {characterId === character.id ? (
-                    <EyeSlashIcon
-                      onClick={() => showCharacterDataHandler(character.id)}
-                      className="hidden h-5 w-5 text-red-600 md:block"
-                    />
-                  ) : (
-                    <EyeIcon
-                      onClick={() => showCharacterDataHandler(character.id)}
-                      className="hidden h-5 w-5 text-red-600 md:block"
-                    />
-                  )}
-                </Character>
-                <div
-                  className={`rounded-b-xl bg-slate-800 px-3 md:hidden ${
-                    character.id === characterId
-                      ? "min-h-screen py-4 opacity-100 transition-all "
-                      : "max-h-0 overflow-hidden opacity-0 transition-all duration-300"
-                  }`}
-                >
-                  <CharacterDetail />
-                  <EpisodesList />
-                </div>
-              </div>
-            );
-          })
-        )}
-      </div>
+      <div>{renderCharactersList()}</div>
     </div>
   );
 }

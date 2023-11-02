@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useCharacterDetailDispatch } from "../context/CharacterDetailContext";
 import {
   useCharacterId,
@@ -6,6 +5,8 @@ import {
 } from "../context/CharacterIdContext";
 import { useEpisodesDispatch } from "../context/EpisodesContext";
 import toast from "react-hot-toast";
+import getCharacter from "../services/getCharacterService";
+import getEpisodesList from "../services/getEpisodesListService";
 
 function useFetchCharacterData() {
   const characterDetailDispatch = useCharacterDetailDispatch();
@@ -18,20 +19,13 @@ function useFetchCharacterData() {
       try {
         characterDetailDispatch({ type: "CHARACTER_DETAIL_PENDING" });
 
-        const { data } = await axios.get(
-          `https://rickandmortyapi.com/api/character/${id}`
-        );
+        const { data } = await getCharacter(id);
 
         const episodesIdList = data.episode.map((episode) => {
           return episode.split("/").at(-1);
         });
 
-        const { data: episodesList } = await axios.get(
-          `https://rickandmortyapi.com/api/episode/${episodesIdList.slice(
-            0,
-            3
-          )}`
-        );
+        const { data: episodesList } = await getEpisodesList(episodesIdList);
 
         characterDetailDispatch({
           type: "CHARACTER_DETAIL_SUCCESS",

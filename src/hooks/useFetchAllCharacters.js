@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useCharactersDispatch } from "../context/CharactersContext";
+import getAllCharacters from "../services/getAllCharactersService";
 
 function useFetchAllCharacters() {
   const charactersDispatch = useCharactersDispatch();
@@ -11,10 +11,7 @@ function useFetchAllCharacters() {
       try {
         charactersDispatch({ type: "CHARACTERS_PENDING" });
 
-        const { data } = await axios.get(
-          "https://rickandmortyapi.com/api/character"
-        );
-
+        const { data } = await getAllCharacters();
         charactersDispatch({
           type: "CHARACTERS_SUCCESS",
           payload: data.results,

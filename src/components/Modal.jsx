@@ -9,13 +9,31 @@ function Modal({ isShowModal, onHideModal }) {
   const favorites = useFavorites();
   const { removeFavoriteCharacter } = useFavoritesDispatch();
 
+  function renderFavoriteCharacters() {
+    return favorites.map((character) => {
+      return (
+        <Character character={character} key={character.id}>
+          <TrashIcon
+            onClick={() => removeFavoriteCharacter(character.id)}
+            className="h-5 w-5 text-red-600"
+          />
+        </Character>
+      );
+    });
+  }
+
   return (
     <div
       className={`fixed inset-0 z-10 h-screen items-center justify-center bg-slate-900/50 py-12 ${
         isShowModal ? "flex" : "hidden"
       }`}
     >
-      <Backdrop isShowModal={isShowModal} onHideModal={onHideModal} />
+      <div
+        onClick={onHideModal}
+        className={`fixed inset-0 h-screen w-screen bg-slate-900/50 ${
+          isShowModal ? "block" : "hidden"
+        }`}
+      ></div>
 
       <div className="no-scrollbar h-full w-11/12 overflow-y-auto rounded-lg">
         <div className="flex flex-col rounded-lg bg-slate-900">
@@ -34,16 +52,7 @@ function Modal({ isShowModal, onHideModal }) {
             <hr className="mb-6 h-px border-0 bg-slate-600" />
           </div>
           <div className="z-10 flex flex-col gap-y-4 px-3 pb-3">
-            {favorites.map((character) => {
-              return (
-                <Character character={character} key={character.id}>
-                  <TrashIcon
-                    onClick={() => removeFavoriteCharacter(character.id)}
-                    className="h-5 w-5 text-red-600"
-                  />
-                </Character>
-              );
-            })}
+            {renderFavoriteCharacters()}
           </div>
         </div>
       </div>
@@ -52,14 +61,3 @@ function Modal({ isShowModal, onHideModal }) {
 }
 
 export default Modal;
-
-export function Backdrop({ isShowModal, onHideModal }) {
-  return (
-    <div
-      onClick={onHideModal}
-      className={`fixed inset-0 h-screen w-screen bg-slate-900/50 ${
-        isShowModal ? "block" : "hidden"
-      }`}
-    ></div>
-  );
-}

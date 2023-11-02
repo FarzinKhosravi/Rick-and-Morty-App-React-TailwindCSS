@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useCharactersDispatch } from "../context/CharactersContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import getCharactersBasedOnQuery from "../services/getCharactersBasedOnQueryService";
 
 const useUserSearch = () => {
   const charactersDispatch = useCharactersDispatch();
@@ -13,10 +14,7 @@ const useUserSearch = () => {
 
     charactersDispatch({ type: "CHARACTERS_PENDING" });
 
-    axios
-      .get(`https://rickandmortyapi.com/api/character/?name=${userSearch}`, {
-        signal,
-      })
+    getCharactersBasedOnQuery(userSearch, { signal })
       .then(({ data }) =>
         charactersDispatch({
           type: "CHARACTERS_SUCCESS",
