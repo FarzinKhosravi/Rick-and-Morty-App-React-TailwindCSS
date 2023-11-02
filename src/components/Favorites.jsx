@@ -5,7 +5,6 @@ import { useFavorites } from "../context/FavoritesContext";
 
 function Favorites() {
   const [isShowModal, setIsShowModal] = useState(false);
-
   const favorites = useFavorites();
 
   const showModal = () => {

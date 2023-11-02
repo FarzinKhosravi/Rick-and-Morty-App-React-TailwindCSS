@@ -1,50 +1,13 @@
 import { ArrowUpCircleIcon } from "@heroicons/react/24/outline";
 import Episode from "./Episode";
-import { useEffect, useState } from "react";
-import {
-  useEpisodes,
-  useEpisodesDispatch,
-} from "../../context/EpisodesContext";
+import { useEpisodes } from "../../context/EpisodesContext";
 import { useCharacterId } from "../../context/CharacterIdContext";
+import useSortEpisodes from "../../hooks/useSortEpisodes";
 
 function EpisodesList() {
-  const [sortType, setSortType] = useState("earliest");
   const episodes = useEpisodes();
-  const setEpisodes = useEpisodesDispatch();
   const characterId = useCharacterId();
-
-  useEffect(() => {
-    if (episodes.length) {
-      switch (sortType) {
-        case "earliest":
-          {
-            const sortedEpisodes = [...episodes].sort((a, b) => {
-              return new Date(a.created) > new Date(b.created) ? 1 : -1;
-            });
-
-            setEpisodes(sortedEpisodes);
-          }
-          break;
-
-        case "latest":
-          {
-            const sortedEpisodes = [...episodes].sort((a, b) => {
-              return new Date(a.created) > new Date(b.created) ? -1 : 1;
-            });
-
-            setEpisodes(sortedEpisodes);
-          }
-          break;
-
-        default:
-          break;
-      }
-    }
-  }, [sortType]);
-
-  const sortDateHandler = () => {
-    setSortType(sortType === "earliest" ? "latest" : "earliest");
-  };
+  const { sortType, sortDateHandler } = useSortEpisodes();
 
   if (!episodes || !characterId) return null;
 
