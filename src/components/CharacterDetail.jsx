@@ -14,6 +14,8 @@ function CharacterDetail() {
   const { addFavoriteCharacter } = useFavoritesDispatch();
   const characterId = useCharacterId();
 
+  if (loading) return <Loader />;
+
   if (!characterDetail || !characterId)
     return (
       <div className="hidden md:block">
@@ -24,8 +26,6 @@ function CharacterDetail() {
         <span className="text-xl">😊</span>
       </div>
     );
-
-  if (loading) return <Loader />;
 
   function favoriteLogic() {
     return favorites.find((favorite) => favorite.id === characterDetail.id) ? (

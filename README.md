@@ -2,6 +2,14 @@
 
 ## App Demo
 
+![preview](./public/Preview-Project.gif)
+
+   <img src="./public/Screenshot-Project-01.png">
+   <img src="./public/Screenshot-Project-02.png">
+   <img src="./public/Screenshot-Project-03.png">
+   <img src="./public/Screenshot-Project-04.png">
+   <img src="./public/Screenshot-Project-05.png">
+
 ---
 
 ## Description 📝
@@ -25,10 +33,10 @@ To get started with this project, follow these steps:
 
 1. Clone this repository to your local machine:
 
-   ```bash
-   git clone https://github.com/your-username/Rick-and-Morty-App-React-TailwindCSS.git
+```bash
+git clone https://github.com/your-username/Rick-and-Morty-App-React-TailwindCSS.git
 
-   ```
+```
 
 2. Open the project folder in your code editor.
 
@@ -42,9 +50,9 @@ npm install
 
 5. Note that in order to apply Development Server, be sure to enter the following command in the terminal editor:
 
-   ```bash
-   npm run dev
-   ```
+```bash
+ npm run dev
+```
 
 ## Usage 📋
 
@@ -65,7 +73,7 @@ npm install
 ## Packages 📦
 
 - Axios (For All Server Side Requests)
-- React-Hot-Toast (To Display Server Side Errors)
+- React-Hot-Toast (To Display Server Side Errors and Loader)
 - HeroIcons/React
 - React-Icons
 - Prettier Plugin TailwindCSS (To Automatically Sort Tailwind Classes)
@@ -80,6 +88,7 @@ npm install
 - Using the Concepts Component Lifecycle.
 - Using the Concepts and Principles React Hooks and Custom Hooks.
 - Using the Concepts Local Storage. (To Store and Retrieve Data from the Browser Storage)
+- Created API Request Functions and Base URL.
 
 ## Web Development Technologies 🪄
 

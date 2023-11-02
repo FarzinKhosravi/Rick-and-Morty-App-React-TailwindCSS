@@ -3,13 +3,15 @@ import Episode from "./Episode";
 import { useEpisodes } from "../../context/EpisodesContext";
 import { useCharacterId } from "../../context/CharacterIdContext";
 import useSortEpisodes from "../../hooks/useSortEpisodes";
+import { useCharacterDetail } from "../../context/CharacterDetailContext";
 
 function EpisodesList() {
   const episodes = useEpisodes();
   const characterId = useCharacterId();
   const { sortType, sortDateHandler } = useSortEpisodes();
+  const { characterDetail } = useCharacterDetail();
 
-  if (!episodes || !characterId) return null;
+  if (!episodes || !characterId || !characterDetail) return null;
 
   function renderEpisodesList() {
     return episodes.map((episode, index) => {
