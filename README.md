@@ -1,6 +1,8 @@
 # Rick and Morty App Project 😍 ( React/TailwindCSS )
 
-## App Demo
+<!-- ## [App Live]() -->
+
+## App Preview
 
 ![preview](./public/Preview-Project.gif)
 

@@ -30,7 +30,7 @@ function EpisodesList() {
         <div>
           <ArrowUpCircleIcon
             onClick={sortDateHandler}
-            className={`h-6 w-6 text-red-600 transition-all duration-200 ${
+            className={`h-6 w-6 cursor-pointer text-red-600 transition-all duration-200 ${
               sortType === "latest" ? "rotate-180" : ""
             }`}
           />
