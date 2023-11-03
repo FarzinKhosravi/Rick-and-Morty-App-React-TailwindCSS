@@ -1,6 +1,6 @@
 # Rick and Morty App Project 😍 ( React/TailwindCSS )
 
-<!-- ## [App Live]() -->
+## [App Live](https://rick-and-morty-app-react-tailwindcss.netlify.app/)
 
 ## App Preview
 
