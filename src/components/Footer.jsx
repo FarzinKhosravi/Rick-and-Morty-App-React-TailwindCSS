@@ -20,7 +20,10 @@ function Footer() {
             <span className="text-xs font-medium text-slate-300 sm:text-sm md:text-base md:font-semibold">
               SERVER STATUS
             </span>
-            <span className="ml-2 block h-2 w-2 rounded-full bg-green-600 sm:h-3 sm:w-3"></span>
+            <span className="relative ml-2 flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-green-600"></span>
+            </span>
           </div>
         </div>
         <div className="mb-10 flex items-center justify-evenly">
